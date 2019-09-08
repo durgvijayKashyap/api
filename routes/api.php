@@ -15,3 +15,12 @@ use Illuminate\Http\Request;
 
 Route::apiResource('user', 'API\UserController');
 Route::apiResource('post', 'API\PostController');
+
+Route::group(['middleware' => 'api', 'prefix' => 'auth' ], function () {
+
+    Route::post('login', 'API\AuthController@login');
+    Route::post('logout', 'API\AuthController@logout');
+    Route::post('refresh', 'API\AuthController@refresh');
+    Route::post('me', 'API\AuthController@me');
+
+});
